@@ -4,13 +4,14 @@ import router from "./routes/user-routes";
 
 
 const app = express();
+app.use(express.json());
 
 app.use("/api/user",router) 
 mongoose
 .connect(
     "mongodb+srv://admin:T36zxDqwe1iGvyi5@cluster0.g3nlp.mongodb.net/TravelBlog?retryWrites=true&w=majority"
 )
-    .then(() => app.listen(5002))
+    .then(() => app.listen(5000))
     .then(() =>
         console.log("Connected to database and listening to localhost 5000")
     )
