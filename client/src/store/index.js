@@ -8,14 +8,14 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
         }, 
         logout(state) { 
-            state.isLoggedIn = false
+            state.isLoggedIn = false;
         },
-    }
+    },
 
-})
+});
 
-export const authActions = authSlice.actions
+export const authActions = authSlice.actions;
 
 export const store = configureStore({
-    reducer: authSlice.reducer
+    reducer: authSlice.reducer,
 })

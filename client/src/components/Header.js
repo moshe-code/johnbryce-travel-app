@@ -65,7 +65,7 @@ const Header = () => {
           )}
           {isLoggedIn && (
             <Button
-              ocCLick={() => dispatch(authActions.logout())}
+              onClick={()=> dispatch(authActions.logout())}
               LinkComponent={Link}
               to="/auth"
               variant="contained"
