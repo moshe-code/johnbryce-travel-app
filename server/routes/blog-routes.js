@@ -10,4 +10,4 @@ blogRouter.get("/:id", getById)
 blogRouter.delete("/:id", deleteBlog)
 blogRouter.get('/user/:id', getByUserId)
 
-export default blogRouter;10 
+export default blogRouter;
