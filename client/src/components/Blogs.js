@@ -16,9 +16,19 @@ const Blogs = () => {
     sendRequest().then((data) => setBlogs(data.blogs));
   }, []);
   console.log(blogs);
-  return <div>
-    <Blog/>
-  </div>;
+  return (
+    <div>
+      {blogs &&
+        blogs.map((blog, index) => (
+          <Blog
+            title={blog.title}
+            description={blog.description}
+            imageURL={blog.imageURL}
+            userName={blog.userName}
+          />
+        ))}
+    </div>
+  );
 };
 
 export default Blogs;

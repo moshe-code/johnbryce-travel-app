@@ -21,11 +21,11 @@ const Auth = () => {
 
   const sendRequest = async (type = "login") => {
     const res = await axios
-    .post(`http://localhost:5000/api/user/${type}`, {
-      name: inputs.name,
-      email: inputs.email,
-      password: inputs.password,
-    }).catch(err => console.log(err))
+      .post(`http://localhost:5000/api/user/${type}`, {
+        name: inputs.name,
+        email: inputs.email,
+        password: inputs.password,
+      }).catch(err => console.log(err))
 
     const data = await res.data;
     console.log(data);
@@ -37,14 +37,16 @@ const Auth = () => {
     console.log(inputs)
     if (isSignup) {
       sendRequest("signup")
-      .then(()=>dispatch(authActions.login()))
-      .then(()=>navigate("/blogs"))
-      .then(data => console.log(data))
+        .then((data) => localStorage.setItem("userId", data.user._id))
+        .then(() => dispatch(authActions.login()))
+        .then(() => navigate("/blogs"))
+        .then(data => console.log(data))
     } else {
       sendRequest()
-      .then(()=>dispatch(authActions.login()))
-      .then(()=>navigate("/blogs"))
-      .then(data => console.log(data))
+        .then((data) => localStorage.setItem("userId", data.user._id))
+        .then(() => dispatch(authActions.login()))
+        .then(() => navigate("/blogs"))
+        .then(data => console.log(data))
     }
   }
   return (
