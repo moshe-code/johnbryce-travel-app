@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Typography, Box, InputLabel, TextField, Button } from "@mui/material";
+import axios from "axios";
 
 const lableStyles = { mb: 1, mt: 2, fontSize: "24px", fontWeight: "bold" };
 const AddBlog = () => {
@@ -8,15 +9,26 @@ const AddBlog = () => {
     description: "",
     imageURL: "",
   });
-  const handleChange = (e) =>{
+  const handleChange = (e) => {
     setInputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
     }))
   }
-  const handleSubmit = (e)=>{
+  const sendRequest = async()=>{
+    const res = await axios.post("http://localhost:5000/api/blog/add",{
+       title:inputs.title,
+       description: inputs.description,
+       image: inputs.imageURL,
+       user: localStorage.getItem("userId")
+    }).catch(err=> console.log(err));
+    const data = await res.data;
+    return data;
+  }
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs)
+    sendRequest().then(data=> console.log(data))
   }
   return (
     <div>
@@ -40,7 +52,7 @@ const AddBlog = () => {
             variant="h2"
             textAlign={"center"}
           >
-            
+
             Post Your Blog
           </Typography>
           <InputLabel sx={lableStyles}>Title</InputLabel>
@@ -69,7 +81,7 @@ const AddBlog = () => {
             margin="auto"
             variant="outlined"
           />
-          <Button type="submit">Submit</Button>
+          <Button sx={{ mt: 2, borderRadius: 4 }} variant="contained" color="warning" type="submit">Submit</Button>
         </Box>
       </form>
     </div>

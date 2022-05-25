@@ -16,7 +16,7 @@ mongoose
 .connect(
     "mongodb+srv://admin:T36zxDqwe1iGvyi5@cluster0.g3nlp.mongodb.net/TravelBlog?retryWrites=true&w=majority"
 )
-    .then(() => app.listen(5000))
+    .then(() => app.listen(5008))
     .then(() =>
         console.log("Connected to database and listening to localhost 5000")
     )
